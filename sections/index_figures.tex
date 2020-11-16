@@ -1,0 +1,9 @@
+{%
+    \let\oldnumberline\numberline%
+    \renewcommand{\numberline}{Rysunek~\oldnumberline}%
+    \vspace{1cm}
+    \listoffigures%
+}
+
+\phantomsection
+\addcontentsline{toc}{section}{Spis rysunków}

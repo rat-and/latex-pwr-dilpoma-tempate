@@ -1,0 +1,17 @@
+\newcommand{\listequationsname}{\Large{Spis równań}}
+\newlistof{myequations}{equ}{\listequationsname}
+
+%\setlength{\cftmyequationsnumwidth}{3.75em}
+\setlength{\cftmyequationsindent}{1.8em}
+
+{%
+    \let\oldnumberline\numberline%
+    \renewcommand{\numberline}{Równanie~\oldnumberline}%
+    \vspace{1cm}
+    \listofmyequations%
+}
+
+\phantomsection
+\addcontentsline{toc}{section}{Spis równań}
+
+\newpage

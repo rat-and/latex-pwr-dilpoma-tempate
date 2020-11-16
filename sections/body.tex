@@ -1,0 +1,197 @@
+\section{Body}
+    
+    \vspace{0.3cm}
+    \noindent
+    \begin{equation}
+        W = \sum_{j=1}^{n} \alpha_j U_j(x) + \sum_{j,l=1}^{n} \alpha_{jl} U_j(x) U_l(x) + ... + \alpha_{jl...n} U_j U_l ... U_n
+        \label{equation:eq_one}
+        \indexequation{Test equation one}
+    \end{equation}
+    \vspace{0.3cm}
+    
+    \noindent
+    \begin{table}[h!]
+        \caption{Dummy test table one}
+        \centering
+        \begin{tabular}{||c c c c||} 
+            \hline
+            Col1 & Col2 & Col2 & Col3 \\ [0.5ex] 
+            \hline\hline
+            1 & 6 & 87837 & 787 \\ 
+            \hline
+            2 & 7 & 78 & 5415 \\
+            \hline
+        \end{tabular}
+        \label{table:table_one}
+    \end{table}
+    
+    \noindent
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[scale=0.2]{images/logo-pwr-2016.pdf}
+        \caption{Test figure one}
+        \label{graphic:figure_one}
+    \end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% subsection %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsection{Subbody A}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% paragraph %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+        \paragraph{Paragraph Citation}
+            \vspace{0.3cm}
+            \noindent
+            Random citation from source \cite{DUMMY:1} embeddeed in text.
+
+            \vspace{0.3cm}
+            \noindent
+            This is some example text that refers to footnote \footnote{\label{myfootnote1}Hello first footnote!}.
+
+            \vspace{0.3cm}
+            \noindent
+            This is another example text that refers to footnote \footnote{\label{myfootnote2}Hello second footnote!}.
+            
+            \newpage
+            
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% subparagraph %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            \subparagraph{Subparagraph of Citation}
+                \vspace{0.3cm}
+                \noindent
+                Random citation \autocite[3]{BOOK:2} embeddeed in text.
+                
+                \vspace{0.3cm}
+                \noindent
+                Random URL citation \cite{WEBSITE:1} embeddeed in text.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% subsection %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      
+    \subsection{Subbody B}
+
+        \begin{enumerate}
+            \item One
+            \begin{enumerate}
+                \item Two
+                \item Three
+                \item Four
+            \end{enumerate}
+            \item Five
+            \item Six
+        \end{enumerate}
+
+        \begin{itemize}
+            \item[--] Dash
+            \item[$-$] Dash
+            \item[$\ast$] Asterisk
+        \end{itemize}
+
+        \newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% subsection %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    \subsection{Subbody C}
+    
+        \vspace{0.3cm}
+        \noindent
+        Equation with numbering:
+        \begin{equation}
+            f(x) = x^2
+            \label{equation:eq_two}
+            \indexequation{Equation with numering}
+        \end{equation}
+
+        \vspace{0.3cm}
+        \noindent
+        Equation without numbering:
+        \begin{equation*}
+            f(x) = x^2
+        \end{equation*}
+
+        \vspace{0.cm}
+        \noindent
+        Ordinary matrix:
+        $\left[
+        \begin{matrix}
+            1 & 0 \\
+            0 & 1 
+        \end{matrix}
+        \right]$
+        
+        \vspace{0.5cm}
+        \noindent
+        Matrix within equation:
+        \begin{equation}
+            \left[
+            \begin{matrix}
+                1 & 0 & 0 \\
+                0 & 1 & 0 \\
+                0 & 0 & 1 \\
+            \end{matrix}
+            \right]
+            \label{equation:mtx_one}
+            \indexequation{Matrix numered as equations}
+        \end{equation}
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5%%%%%%%%%%%%%%%%%%% subsubsection %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \subsubsection{Subsubbody}      
+            \begin{table}[h!]
+                \begin{center}
+                    \caption{Autogenerated table from .csv file.}
+                    \label{table1}
+                    \pgfplotstabletypeset[
+                        multicolumn names, % allows to have multicolumn names
+                        col sep=comma, % the seperator in our .csv file
+                        display columns/0/.style={
+                            column name=$Value 1$, % name of first column
+                            column type={S},
+                            string type
+                        },  % use siunitx for formatting
+                        display columns/1/.style={
+                            column name=$Value 2$,
+                            column type={S},string type
+                        },
+                        very head row/.style={
+                            before row={\toprule}, % have a rule at top
+                            after row={
+                                \si{\ampere} 
+                                &
+                                \si{\volt}\\ % the units seperated by &
+                                \midrule
+                            } % rule under units
+                        },
+                        every last row/.style={
+                            after row=\bottomrule
+                        }, % rule at bottom,n
+                    ]{resources/table.csv} % filename/path to file
+                \end{center}
+            \end{table}
+    
+            \begin{figure}[h!]
+                \begin{center}
+                    \begin{tikzpicture}
+                        \begin{axis}[
+                            width=\linewidth, % Scale the plot to \linewidth
+                            grid=major, % Display a grid
+                            grid style={dashed,gray!30}, % Set the style
+                            xlabel=X Axis $U$, % Set the labels
+                            ylabel=Y Axis $I$,
+                            x unit=\si{\volt}, % Set the respective units
+                            y unit=\si{\ampere},
+                            legend style={at={(0.5,-0.2)},anchor=north}, % Put the legend below the plot
+                            x tick label style={rotate=90,anchor=east} % Display labels sideways
+                            ]
+                            \addplot 
+                            % add a plot from table; you select the columns by using the actual name in the .csv file (on top) 
+                            table[x=DummyCol1,y=DummyCol2,col sep=comma] {resources/table.csv}; 
+                            \legend{Dummy plot legend}
+                        \end{axis}
+                    \end{tikzpicture}
+                \caption{Autogenerated plot from .csv file.}
+                \end{center}
+            \end{figure}
+
+\newpage

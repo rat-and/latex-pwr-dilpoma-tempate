@@ -1,0 +1,199 @@
+% Create a one-sided article document type
+\documentclass[a4paper, 11pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Redefine the size and margins 
+\usepackage[a4paper]{geometry}
+% Polish language package
+\usepackage[polish]{babel}
+\usepackage[T1]{fontenc}
+% Use UTF-8 as input encoding
+\usepackage[utf8]{inputenc}
+% Use a modern font (that is not pixelated)
+\usepackage{lmodern}
+% Use microtype to improve readability
+\usepackage[
+    protrusion = true,
+    expansion = true
+]{microtype} 
+% Use multiple columns
+\usepackage{multicol}
+% Display two figures next to each other
+\usepackage{subfigure}
+\usepackage[subfigure]{tocloft}
+% Display list of Equations
+\usepackage{tocloft}
+% Insert empty pages
+\usepackage{afterpage}
+% Configure style aspects of the document
+\usepackage{caption}            % To configure the captions
+\usepackage{siunitx}            % For SI units
+\usepackage{graphicx}           % To include graphics
+\usepackage[dvipsnames]{xcolor} % To configure colors
+\usepackage{fancyhdr}           % To configure the header and footer
+\usepackage[                    % Bibliography - Bibtex
+    backend=bibtex,
+    style=ieee,
+    sorting=none,
+    natbib=true
+]{biblatex}
+\addbibresource{bibliography.bib}       % References files in .bib format
+\usepackage{amsmath}                    % Math functions
+\usepackage{booktabs}                   % For \toprule, \midrule and \bottomrule
+\usepackage{pgfplotstable}              % Generates table from .csv
+\usepackage{tikz}                       % To generate the plot from .csv
+\usepackage{pgfplots}                   % Plots
+\pgfplotsset{compat=newest}             % Allows to place the legend below plot
+\usepgfplotslibrary{units}              % Allows to enter the units nicely
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% metadata %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define the course variables that are gonna be used several times
+\newcommand{\university}{Politechnika\ Wrocławska}
+\newcommand{\faculty}{Wydział Budownictwa Lądowego i Wodnego}
+\newcommand{\additionaltext}{Dodatkowy tekst}    
+\newcommand{\degree}{Praca dyplomowa inżynierska/magisterska}
+\newcommand{\thesisname}{Analiza Eliza Dysocjacja - Taka Sytuacja }
+\newcommand{\me}{inż. Zyziu Wykop-Lusterko}
+\newcommand{\supervisor}{dr hab. Janko Muzykant}
+\newcommand{\tags}{tag1\ tag2\ tag3}
+
+% Configure the metadata of the PDF document
+\usepackage[
+    bookmarks       = true,             % Show the bookmarks
+    unicode         = true,             % Use Unicode
+    pdftoolbar      = true,             % Show Acrobat’s toolbar
+    pdfmenubar      = true,             % Show Acrobat’s menu
+    pdffitwindow    = false,            % Window fit to page when opened
+    pdfstartview    = {FitH},           % Fit the page width to the window
+    pdfauthor       = {\me},            % The author of this document
+    pdftitle        = {\thesisname\ --\ \me}, % The title of this document
+    pdfsubject      = {\thesisname},          % The subject of this document
+    pdfkeywords     = {\tags},          % The keywords of this document
+    pdfnewwindow    = true,             % Open the links in a new PDF window
+    colorlinks      = true,             % Use colored links
+    linkcolor       = black,            % Internal links color
+    citecolor       = black,            % Bibliographic links color
+    filecolor       = black,            % File links color
+    urlcolor        = blue              % External links color
+]{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}               % Use a fancy header style
+\fancyhf{}                      % Set the header format
+\fancyheadoffset{0.0 cm}        % Set the header offset
+%\lhead{\degree}                 % Set the header right-side contents
+\lhead{                         %wbliw's logo in the footer
+    \includegraphics[
+        width = 0.3\linewidth,
+        height = 1.2cm,
+        keepaspectratio]{
+            images\\wbliw.jpg
+        }
+}
+\rhead{\thesisname}             % Set the header left-side contents
+\cfoot{\thepage}                % Set the footer page number
+
+% Define the geometry of the document
+\newcommand\defaultgeometry {
+    \newgeometry {
+        top = 2.5cm, 
+        bottom = 2.5cm, 
+        right = 2.0cm, 
+        left = 2.0cm
+    }
+}
+
+% Set initial geometry to default
+\defaultgeometry
+
+% Create a custom command shortcut
+\renewcommand{\arraystretch}{1.3} % Modify the vertical spacing of the tables
+\raggedbottom                     % Modify the vertical spacing of enumerated environments
+
+% Set empty page 
+\newcommand\blankpage{
+    \null
+    \thispagestyle{empty}
+    \addtocounter{page}{-1}
+    \newpage
+}
+
+% Customize equations
+\newcommand{\indexequation}[1]{
+   \addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}
+}
+
+% Set the title format
+\title {
+    \vspace*{1.0 cm}
+    \LARGE\textbf{\uppercase{\university}} \\
+    \vspace*{0.5 cm}
+    \Large\textbf{\uppercase{\faculty}} \\
+    \vspace*{2 cm}
+    \large\text{\uppercase{\additionaltext}} \\
+    \vspace*{2 cm}
+    \large\text{\uppercase{\degree}} \\
+    \vspace*{1.0 cm}
+    \LARGE\textbf{\uppercase{\thesisname}} \\
+}
+
+%Set the author format
+\author {
+    \normalsize
+    \begin{tabbing}
+        \hspace*{0.4\linewidth} \= \hspace*{0.5\linewidth} \= \kill
+            \> Autor: \' \textbf{\me} \\[0.25cm]
+            \> Promotor: \' \textbf{\supervisor} \\
+    \end{tabbing}  
+        \vspace{2cm}
+}
+
+%Set the date format
+\date { 
+    Wroclaw, MM YYYY
+}
+
+% Setup siunitx:
+\sisetup{
+  round-mode          = places, % Rounds numbers
+  round-precision     = 3,      % to n places
+}
+
+% A macro to print the title
+\makeatletter
+\def\printtitle{{\centering\@title\par}}
+\makeatother
+
+% A macro to print the author
+\makeatletter
+\def\printauthor{{\centering\large\@author}}
+\makeatother
+
+% A macro to print the date
+\makeatletter
+\def\printdate{{\centering\@date}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% document start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+    % Include the cover
+    \afterpage{\blankpage}
+    \input{cover.tex}
+    % Include different sections
+    \input{sections/index}
+    \input{sections/abstract}
+    \input{sections/introduction}
+    \input{sections/body}
+    \input{sections/conclusions}
+    \input{sections/index_tables}
+    \input{sections/index_figures}
+    \input{sections/index_equations}
+    \input{sections/bibliography}
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% document end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
